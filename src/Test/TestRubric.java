@@ -13,9 +13,9 @@ class TestRubric {
 
 	@Test
 	void test_getMidtermWorth1() {
-		r.setMidtermWorth(150);
+		r.setMidtermWorth(101);
 		double actual = r.getMidtermWorth();
-		double expected = 1.50;
+		double expected = 1.01;
 		assertEquals(expected, actual);
 		
 	}
@@ -61,6 +61,15 @@ class TestRubric {
 		r.setMidtermWorth(99);
 		double actual = r.getMidtermWorth();
 		double expected = 0.99;
+		assertEquals(expected, actual);
+		
+	}
+	
+	@Test
+	void test_getMidtermWorth7() {
+		r.setMidtermWorth(1);
+		double actual = r.getMidtermWorth();
+		double expected = 0.01;
 		assertEquals(expected, actual);
 		
 	}
@@ -121,6 +130,15 @@ class TestRubric {
 		
 	}
 	
+	@Test
+	void test_getFinalWorth7() {
+		r.setMidtermWorth(1);
+		double actual = r.getMidtermWorth();
+		double expected = 0.01;
+		assertEquals(expected, actual);
+		
+	}
+	
 	/************** getHwWorth() **************/
 	
 	@Test
@@ -173,6 +191,15 @@ class TestRubric {
 		r.setMidtermWorth(99);
 		double actual = r.getMidtermWorth();
 		double expected = 0.99;
+		assertEquals(expected, actual);
+		
+	}
+	
+	@Test
+	void test_getHwWorth7() {
+		r.setMidtermWorth(0.75);
+		double actual = r.getMidtermWorth();
+		double expected = 0.0075;
 		assertEquals(expected, actual);
 		
 	}
@@ -233,13 +260,22 @@ class TestRubric {
 		
 	}
 	
-/************** getLabWorth() **************/
+	@Test
+	void test_getParticipationWorth7() {
+		r.setMidtermWorth(1);
+		double actual = r.getMidtermWorth();
+		double expected = 0.01;
+		assertEquals(expected, actual);
+		
+	}
+	
+	/************** getLabWorth() **************/
 	
 	@Test
 	void test_getLabWorth1() {
-		r.setMidtermWorth(125);
+		r.setMidtermWorth(101);
 		double actual = r.getMidtermWorth();
-		double expected = 1.25;
+		double expected = 1.01;
 		assertEquals(expected, actual);
 		
 	}
@@ -288,6 +324,111 @@ class TestRubric {
 		assertEquals(expected, actual);
 		
 	}
+	
+	@Test
+	void test_getLabWorth7() {
+		r.setMidtermWorth(0.5);
+		double actual = r.getMidtermWorth();
+		double expected = 0.005;
+		assertEquals(expected, actual);
+		
+	}
+	
+	/************** toString() **************/
+	
+	@Test
+	void test_toString1() {
+		
+		String expected = "Grading Rubric:\nFinal is worth= 20.0%\nMidterm is worth= 20.0%\nParticipation is worth= 20.0%" 
+				+ "\nHomework is worth= 20.0%\nLabs are worth= 20.0%";
+				
+		String actual = r.toString();
+		assertEquals(expected, actual);
+		
+	}
+	
+	@Test
+	void test_toString2() {
+		r.setFinalWorth(25);
+		r.setHwWorth(10);
+		r.setLabWorth(25);
+		String actual = r.toString();
+
+		String expected = "Grading Rubric:\nFinal is worth= 25.0%\nMidterm is worth= 20.0%\nParticipation is worth= 20.0%" 
+				+ "\nHomework is worth= 10.0%\nLabs are worth= 25.0%";
+				
+		assertEquals(expected, actual);
+		
+	}
+	
+	@Test
+	void test_toString3() {
+		r.setFinalWorth(35);
+		r.setHwWorth(10);
+		r.setLabWorth(25);
+		r.setParticipationWorth(5);
+		r.setMidtermWorth(25);
+		String actual = r.toString();
+
+		String expected = "Grading Rubric:\nFinal is worth= 35.0%\nMidterm is worth= 25.0%\nParticipation is worth= 5.0%" 
+				+ "\nHomework is worth= 10.0%\nLabs are worth= 25.0%";
+				
+		assertEquals(expected, actual);
+		
+	}
+	
+	@Test
+	void test_toString4() {
+		r.setFinalWorth(35);
+		
+		String actual = r.toString();
+
+		String expected = "Grading Rubric:\nFinal is worth= 35.0%\nMidterm is worth= 20.0%\nParticipation is worth= 20.0%" 
+				+ "\nHomework is worth= 20.0%\nLabs are worth= 20.0%";
+				
+		assertEquals(expected, actual);
+		
+	}
+	
+//	@Test
+//	void test_toString5() {
+//		Rubric r = new Rubric(30, 20, 20, 20, 20);
+//		
+//		String actual = r.toString();
+//
+//		String expected = "Grading Rubric:\nFinal is worth= 20.0%\nMidterm is worth= 20.0%\nParticipation is worth= 10.0%" 
+//				+ "\nHomework is worth= 5.0%\nLabs are worth= 20.0%";
+//				
+//		assertEquals(expected, actual);
+//		
+//	}
+//
+//	@Test
+//	void test_toString6() {
+//		Rubric r = new Rubric(20, 20, 10, 5, 20);
+//		
+//		String actual = r.toString();
+//		
+//		String expected = "Grading Rubric:\nFinal is worth= 20.0%\nMidterm is worth= 20.0%\nParticipation is worth= 10.0%" 
+//				+ "\nHomework is worth= 5.0%\nLabs are worth= 20.0%";
+//		
+//		assertEquals(expected, actual);
+//		
+//	}
+	
+	@Test
+	void test_toString7() {
+		Rubric r = new Rubric(20, 20, 20, 20, 20);
+		
+		String actual = r.toString();
+
+		String expected = "Grading Rubric:\nFinal is worth= 20.0%\nMidterm is worth= 20.0%\nParticipation is worth= 20.0%" 
+				+ "\nHomework is worth= 20.0%\nLabs are worth= 20.0%";
+				
+		assertEquals(expected, actual);
+		
+	}
+	
 
 
 
