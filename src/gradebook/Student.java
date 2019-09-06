@@ -122,6 +122,8 @@ public class Student extends Rubric {
             labGrades[i] = 0;
         }
     }
+    
+
 
     public Student(String name, double finalTest, double midtermTest, double participation) {
         this.name = name;
