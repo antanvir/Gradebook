@@ -199,7 +199,7 @@ class TestStudent {
 		
 	}
 	
-	/************** getFinalTest() **************/
+	/************** getParticipation() **************/
 	
 	@Test
 	void test_getParticipation1() {
@@ -269,7 +269,7 @@ class TestStudent {
 	@Test
 	void test_getLabGrades1() {
 		
-		s.setLabGrades(new double[] {65, 76, 87});
+		s.setHwGrades(new double[] {65, 76, 87});
 		double[] actual = s.getLabGrades();
 		double[] expected = new double[] {65, 76, 87};
 		assertArrayEquals(expected, actual);
@@ -278,7 +278,7 @@ class TestStudent {
 	
 	@Test
 	void test_getLabGrades2() {
-		s.setLabGrades(new double[] {});
+		s.setHwGrades(new double[] {});
 		double[] actual = s.getLabGrades();
 		double[] expected = new double[] {};
 		assertArrayEquals(expected, actual);
@@ -287,7 +287,7 @@ class TestStudent {
 	
 	@Test
 	void test_getLabGrades3() {
-		s.setLabGrades(new double[] {65});
+		s.setHwGrades(new double[] {65});
 		double[] actual = s.getLabGrades();
 		double[] expected = new double[] {65};
 		assertArrayEquals(expected, actual);
@@ -296,7 +296,7 @@ class TestStudent {
 	
 	@Test
 	void test_getLabGrades4() {
-		s.setLabGrades(new double[] {0, 76, 100, 99, 105, -1});
+		s.setHwGrades(new double[] {0, 76, 100, 99, 105, -1});
 		double[] actual = s.getLabGrades();
 		double[] expected = new double[] {0, 76, 100, 99, 105, -1};
 		assertArrayEquals(expected, actual);
@@ -305,12 +305,62 @@ class TestStudent {
 	
 	@Test
 	void test_getLabGrades5() {
-		s.setLabGrades(new double[] {0, 105});
+		s.setHwGrades(new double[] {0, 105});
 		double[] actual = s.getLabGrades();
 		double[] expected = new double[] {0, 76, 100, 99, 105};
 		assertFalse(Arrays.equals(expected, actual));
 		
 	}
+	
+	
+	/************** getHwGrades() **************/
+	
+	@Test
+	void test_getHwGrades1() {
+		
+		s.setHwGrades(new double[] {65, 76, 87});
+		double[] actual = s.getHwGrades();
+		double[] expected = new double[] {65, 76, 87};
+		assertArrayEquals(expected, actual);
+		
+	}
+	
+	@Test
+	void test_getHwGrades2() {
+		s.setHwGrades(new double[] {});
+		double[] actual = s.getHwGrades();
+		double[] expected = new double[] {};
+		assertArrayEquals(expected, actual);
+		
+	}
+	
+	@Test
+	void test_getHwGrades3() {
+		s.setHwGrades(new double[] {65});
+		double[] actual = s.getHwGrades();
+		double[] expected = new double[] {65};
+		assertArrayEquals(expected, actual);
+		
+	}
+	
+	@Test
+	void test_getHwGrades4() {
+		s.setHwGrades(new double[] {0, 76, 100, 99, 105, -1});
+		double[] actual = s.getHwGrades();
+		double[] expected = new double[] {0, 76, 100, 99, 105, -1};
+		assertArrayEquals(expected, actual);
+		
+	}
+	
+	@Test
+	void test_getHwGrades5() {
+		s.setHwGrades(new double[] {0, 105});
+		double[] actual = s.getHwGrades();
+		double[] expected = new double[] {0, 76, 100, 99, 105};
+		assertFalse(Arrays.equals(expected, actual));
+		
+	}
+	
 	
 	/************** calculateHwAverage() **************/
 	
@@ -411,9 +461,7 @@ class TestStudent {
 		s.setHwGrades(new double[] {0, 76, 100, 99, 105, -1});
 		double actual = s.calculateHwAverage();
 		double expected = 63.167;
-//		System.out.println((double)epsilon);
-		assertEquals(expected, actual, epsilon);
-		
+		assertEquals(expected, actual, epsilon);	
 	}
 	
 	@Test
@@ -468,10 +516,6 @@ class TestStudent {
 	
 	@Test
 	void test_toString1() {
-//		return "name= " + name + ":\nfinal= " + finalTest + "\nmidterm= " + midtermTest 
-//				+ "\nparticipation= " + participation + "\nhomework= " + calculateHwAverage() 
-//				+ "\nlabs= " + calculateLabAverage() + "\nFinal Grade= " + calculateGrade(rubric);
-		
 		Student s = new Student();
 		s.calculateGrade(new Rubric());
 		String actual = s.toString();
@@ -493,7 +537,6 @@ class TestStudent {
 	@Test
 	void test_toString3() {
 		Student s = new Student("ANT", 80, 75, 60, new double[] {20, 67, 0}, new double[] {87, 45}, new Rubric(35, 25, 5, 10, 25));
-//		s.calculateGrade(new Rubric(35, 25, 5, 10, 25));
 		System.out.println(s.calculateGrade(new Rubric(35, 25, 5, 10, 25)));
 		String actual = s.toString();
 		String expected = "name= ANT:\nfinal= 80.0\nmidterm= 75.0\nparticipation= 60.0\nhomework= 29.0\nlabs= 66.0\nFinal Grade= 69.15";
@@ -505,7 +548,7 @@ class TestStudent {
 	void test_toString4() {
 		Student s = new Student("ANT", 8, 7.5, 61, new double[] {20, 67, 0}, new double[] {87, 46});
 		s.calculateGrade(new Rubric(35, 25, 5, 10, 25));
-		System.out.println(s.calculateGrade(new Rubric(35, 25, 5, 10, 25))); //Doesn't match
+//		System.out.println(s.calculateGrade(new Rubric(35, 25, 5, 10, 25))); //Doesn't match
 		String actual = s.toString();
 		String expected = "name= ANT:\nfinal= 8.0\nmidterm= 7.5\nparticipation= 61.0\nhomework= 29.0\nlabs= 66.5\nFinal Grade= 34.4";
 		assertNotEquals(expected, actual);
