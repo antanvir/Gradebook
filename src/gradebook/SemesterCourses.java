@@ -78,7 +78,7 @@ public class SemesterCourses {
 		double grade;
 		
 		if(marks < -1.0 || marks > 100.0) grade = -1.0;
-		if(marks < 40.0) grade = 0.0;
+		else if(marks < 40.0) grade = 0.0;
 		else if(marks < 50.0) grade = 1.0;
 		else if(marks < 60.0) grade = 2.0;
 		else if(marks < 70.0) grade = 3.0;
